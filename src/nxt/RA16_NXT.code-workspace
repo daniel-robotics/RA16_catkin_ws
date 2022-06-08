@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/usr/local/src/nxtosek"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"kernel.h": "c",
+			"kernel_id.h": "c",
+			"ecrobot_interface.h": "c"
+		},
+		"files.eol": "\n",
+		"remote.containers.executeInWSL": true,
+        "terminal.integrated.defaultProfile.linux": "bash", 
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "/bin/bash"
+            }
+        }
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"tomoki1207.pdf",
+			"EhabHelaly.oil",
+			"actboy168.tasks",
+			"ms-vscode-remote.remote-containers"
+		]
+	}
+}

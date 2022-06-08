@@ -1,0 +1,30 @@
+  RESOURCE RES_SENSORS
+  {
+  	RESOURCEPROPERTY = STANDARD;
+  };
+
+  TASK TASK_SENSORS
+  {
+    AUTOSTART = FALSE;
+    PRIORITY = 3; 					/* Smaller value means lower priority */ 
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    RESOURCE = RES_SENSORS;
+    STACKSIZE = 512; 				/* Stack size */ 
+  };
+
+
+  ALARM ALARM_SENSORS
+  {
+    COUNTER = SysTimerCnt;
+    ACTION = ACTIVATETASK
+    {
+        TASK = TASK_SENSORS;
+    };
+    AUTOSTART = TRUE
+    {
+        ALARMTIME = 1;
+        CYCLETIME = 7; 				/* Task is executed every 7msec */
+        APPMODE = appmode1;
+    };
+  };

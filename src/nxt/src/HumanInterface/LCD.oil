@@ -1,0 +1,30 @@
+  RESOURCE RES_LCD
+  {
+  	RESOURCEPROPERTY = STANDARD;
+  };
+
+  TASK TASK_LCD
+  {
+    AUTOSTART = FALSE;
+    PRIORITY = 2; 					/* Smaller value means lower priority */ 
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    RESOURCE = RES_LCD;
+    STACKSIZE = 512; 				/* Stack size */ 
+  };
+
+
+  ALARM ALARM_LCD
+  {
+    COUNTER = SysTimerCnt;
+    ACTION = ACTIVATETASK
+    {
+        TASK = TASK_LCD;
+    };
+    AUTOSTART = TRUE
+    {
+        ALARMTIME = 1;
+        CYCLETIME = 100; 			/* Task is executed every 100msec */
+        APPMODE = appmode1;
+    };
+  };

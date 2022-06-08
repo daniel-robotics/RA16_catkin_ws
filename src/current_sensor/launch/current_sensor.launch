@@ -1,0 +1,42 @@
+<launch>
+  <!-- ************************************************************** -->
+  <!--     ROSLAUNCH FILE    (http://wiki.ros.org/roslaunch/)         -->
+  <!--                                                                -->
+  <!--     COMMAND-LINE USAGE:                                        -->
+  <!-- roslaunch adafruit_imu imu.launch arg1:=val1 arg2:=val2        -->
+  <!-- ************************************************************** -->
+
+  <!-- Local constants: -->
+  <!-- arg name="NAME"  value="CONSTANTVALUE" -->
+  <arg name="DEFAULT_CURRENT_TOPIC" value="current" />
+  <arg name="DEFAULT_VOLTAGE_TOPIC" value="voltage" />
+  <arg name="DEFAULT_POWER_TOPIC"   value="power" />
+
+  <!-- Required arguments: -->
+  <!-- arg name="NAME" -->
+
+  <!-- Optional arguments: -->
+  <!-- arg name="NAME"  default="VALUE" -->
+  <arg name="name"            default="current_sensor" />
+  <arg name="current_topic"   default="$(arg DEFAULT_CURRENT_TOPIC)" />
+  <arg name="voltage_topic"   default="$(arg DEFAULT_VOLTAGE_TOPIC)" />
+  <arg name="power_topic"     default="$(arg DEFAULT_POWER_TOPIC)" />
+  <arg name="namespace"       default="/" />
+
+  <!-- Start multiple launch files in the same namespace -->
+  <group ns="$(arg namespace)">
+    <!-- The messages to the default topic will be rerouted to the new topic -->
+    <remap from="$(arg DEFAULT_CURRENT_TOPIC)" to="$(arg current_topic)" />
+    <remap from="$(arg DEFAULT_VOLTAGE_TOPIC)" to="$(arg voltage_topic)" />
+    <remap from="$(arg DEFAULT_POWER_TOPIC)"   to="$(arg power_topic)" />
+
+    <!-- Launch ina219 node-->
+    <include file="$(find template_rospy_pkg)/launch/generic_node.launch">
+      <arg name="package" value="current_sensor" />
+      <arg name="exec"    value="ina219" />
+      <arg name="name"    value="$(arg name)" />
+    </include>
+
+  </group>
+
+</launch>

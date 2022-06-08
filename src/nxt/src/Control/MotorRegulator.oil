@@ -1,0 +1,30 @@
+  RESOURCE RES_MOTORS
+  {
+  	RESOURCEPROPERTY = STANDARD;
+  };
+
+  TASK TASK_MOTORREG
+  {
+    AUTOSTART = FALSE;
+    PRIORITY = 10; 					/* Smaller value means lower priority */ 
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    RESOURCE = RES_MOTORS;
+    STACKSIZE = 512; 				/* Stack size */ 
+  };
+
+
+  ALARM ALARM_MOTORREG
+  {
+    COUNTER = SysTimerCnt;
+    ACTION = ACTIVATETASK
+    {
+        TASK = TASK_MOTORREG;
+    };
+    AUTOSTART = TRUE
+    {
+        ALARMTIME = 1;
+        CYCLETIME = 20; 			/* Task is executed every 20msec */
+        APPMODE = appmode1;
+    };
+  };

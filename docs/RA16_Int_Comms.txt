@@ -1,0 +1,45 @@
+Internal Comm Packet Protocols
+
+Hardware RS485 Buffer: 64 bytes
+
+RS485 CMD_STATE Packet: 34 Bytes
+	Byte:	0:		0x01		CMD_STATE Packet Identifier
+			1:		uint8_t		Mode set: Kill, Auto-Home, Self-guided, or PC-guided
+			2-5:	fix16_t		J1 Angle Target		(16.16 representation)
+			6-9:	fix16_t		J1 Velocity Target	(16.16 representation)
+			10-13:	fix16_t		J3 Angle Target		(16.16 representation)
+			14-17:	fix16_t		J3 Velocity Target	(16.16 representation)
+			18-21:	fix16_t		J5 Angle Target		(16.16 representation)
+			22-25:	fix16_t		J5 Velocity Target	(16.16 representation)
+			26-29:	fix16_t		J6 Angle Target		(16.16 representation)
+			30-33:	fix16_t		J6 Velocity Target	(16.16 representation)
+
+RS485 NXT1_STATE Packet: 12 Bytes
+	Byte:	0:		0x02		NXT1_STATE Packet Identifier
+			1-2:	int16_t 	J2 Angle	(Top 16 bits of internal 16.16 representation)
+			3-4:	int16_t		J2 Velocity	(Top 16 bits of internal 16.16 representation)
+			5-6:	int16_t 	J4 Angle	(Top 16 bits of internal 16.16 representation)
+			7-8:	int16_t		J4 Velocity	(Top 16 bits of internal 16.16 representation)
+			9:		uint8_t		Kill Switch
+			10:		uint8_t		Limit Switch Hub (Each bit is 1 switch state)
+			11:		uint8_t		EA-Valve State
+			
+RS485 NXT2_STATE Packet: 15 Bytes
+	Byte:	0:		0x03		NXT2_STATE Packet Identifier
+			1-2:	int16_t 	J1 Angle	(Top 16 bits of internal 16.16 representation)
+			3-4:	int16_t		J1 Velocity	(Top 16 bits of internal 16.16 representation)
+			5-6:	int16_t 	J5 Angle	(Top 16 bits of internal 16.16 representation)
+			7-8:	int16_t		J5 Velocity	(Top 16 bits of internal 16.16 representation)
+			9-10:	int16_t		EOPD1 OR EA-Surface Orientation Angle 1 (Top 16 bits of internal 16.16 representation)
+			11-12:	int16_t		EOPD2 OR EA-Surface Orientation Angle 2 (Top 16 bits of internal 16.16 representation)
+			13-14:	int16_t		EOPD3 OR EA-Surface Orientation Angle 3 (Top 16 bits of internal 16.16 representation)
+
+RS485 NXT3_STATE Packet: 11 Bytes
+	Byte:	0:		0x04		NXT3_STATE Packet Identifier
+			1-2:	int16_t 	J3 Angle	(Top 16 bits of internal 16.16 representation)
+			3-4:	int16_t		J3 Velocity	(Top 16 bits of internal 16.16 representation)
+			5-6:	int16_t 	J6 Angle	(Top 16 bits of internal 16.16 representation)
+			7-8:	int16_t		J6 Velocity	(Top 16 bits of internal 16.16 representation)
+			9:		int8_t		EA-Addl-1
+			10:		int8_t		EA-Addl-2
+

@@ -1,0 +1,6 @@
+rate: 20
+current_topic: "current"
+voltage_topic: "voltage"
+power_topic: "power"
+i2c_addr: ""
+verbose: true

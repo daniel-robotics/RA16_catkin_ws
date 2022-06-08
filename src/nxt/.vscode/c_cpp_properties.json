@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "OSEK_C",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/src/nxtosek/ecrobot/c",
+                "/usr/local/src/nxtosek/toppers_osek/**",
+                "/usr/local/src/nxtosek/lejos_nxj/src/nxtvm/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-arm"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,70 @@
+NXT1:
+	MA: J4
+	MB: J56-A
+	MC: J56-B
+	S1: IMU
+	S2: IR to RCX1
+	S3: Switch MUX
+	S4:	RS485 to Port Splitter
+	BT: PC Control and Telemetry
+	LCD: Display mode, error state
+
+NXT2:
+	MA: J1-A, J1-B
+	MB: J1-C
+	MC: J1-D
+	S1: J1 Absolute Angle
+	S2: 
+	S3: 
+	S4:	RS485 to Port Splitter
+	BT: PC Telemetry
+	LCD: Not available
+
+NXT3:
+	MA: J2-A
+	MB: J2-B
+	MC: J2-C
+	S1: J2 Absolute Angle
+	S2: 
+	S3: 
+	S4:	RS485 to Port Splitter
+	BT: PC Telemetry
+	LCD: Not available
+	
+NXT4:
+	MA: J3-A
+	MB: J3-B
+	MC: 
+	S1: J3 Absolute Angle
+	S2: 
+	S3: 
+	S4:	RS485 to Port Splitter
+	BT: PC Telemetry
+	LCD: Not available
+
+RCX1:
+	MA: EA-Pump
+	MB: EA-Valve
+	MC: EA-Pump
+	S1: EA-Pressure Transducer
+	S2:
+	S3:
+	IR: IR-Link to NXT1
+	LCD: Pressure Transducer
+
+PC:
+	BT: (Optional) Bluetooth Master to NXT1
+	MATLAB: Path planning
+
+
+WIRES	
+EOPD 1	1.25m	x
+EOPD 2	1.25m	x
+EOPD 3	1.25m	x
+J5		1m		x
+J4		1m		x
+J6		1m		x	
+J3-1	0.75m	x
+J3-2	0.75m	x
+SW Hub	0.75m	x
+IRLink	0.75m	x
