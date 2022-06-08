@@ -1,2 +1,2 @@
-# ros_catkin_ws
-Template catkin-tools workspace for ROS1-NOETIC
+# RA16_catkin_ws
+ROS Catkin Workspace for the RA-16 Robotic Arm
