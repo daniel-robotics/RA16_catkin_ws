@@ -16,7 +16,7 @@
 //********************************************************************************************************
 // COMPILER PARAMETERS
 //
-#define FIXMATRIX_MAX_SIZE 6
+#define FIXMATRIX_MAX_SIZE 4
 #define FIXMATH_NO_OVERFLOW
 #define FIXMATH_NO_ROUNDING
 //
@@ -29,7 +29,6 @@
 
 #include "fix16.h"
 #include "fixmatrix.h"
-#include "../Sensors/Encoders.h"
 
 // GLOBAL HELPER FUNCTIONS
 
@@ -48,69 +47,6 @@ static inline int32_t inc_wrap(int32_t n, int32_t lo, int32_t hi)	// Increments 
 static inline int32_t dec_wrap(int32_t n, int32_t lo, int32_t hi)	// Decrements n, wrapping around to hi if --n < lo
 {	return ( (--n)<lo ? hi : n	);	}
 
-// ENCODER GROUPS
-
-#if NXT == 1
-	#define ENCODER_GROUPS 1		// Number of joints driven by NXT
-	static const struct encoder_group[ENCODER_GROUPS] = {
-		{
-			.num_encs = 2,
-			.enc_types = 	{	ENC_TYPE_RELATIVE,	ENC_TYPE_ABSOLUTE	},
-			.enc_ports = 	{	NXT_PORT_A,			NXT_PORT_1			},
-			.r_ei_to_out = 	{	F16(1.0),			F16(1.0)			},
-			.r_out_to_ei =  {	F16(1.0/1.0),		F16(1.0/1.0)		},
-			.get_angle = 	{	&enc_get_angle_builtin, &enc_get_angle_hitechnic	},
-			.set_angle = 	{	&enc_set_angle_builtin, &enc_set_angle_hitechnic	},
-			.correlate = &enc_correlate_use_only_first
-		}
-	};
-
-#elif NXT == 2
-	#define ENCODER_GROUPS 1		// Number of joints driven by NXT 2
-	static const struct encoder_group[ENCODER_GROUPS] = {
-		{
-			.num_encs = 4,
-			.enc_types = 	{	ENC_TYPE_RELATIVE,	ENC_TYPE_RELATIVE,	ENC_TYPE_RELATIVE,	ENC_TYPE_ABSOLUTE	},
-			.enc_ports = 	{	NXT_PORT_A,			NXT_PORT_B,			NXT_PORT_C,			NXT_PORT_1			},
-			.r_ei_to_out = 	{	F16(1.0),			F16(1.0),			F16(1.0),			F16(1.0)			},
-			.r_out_to_ei =  {	F16(1.0/1.0),		F16(1.0/1.0),		F16(1.0/1.0),		F16(1.0/1.0)		},
-			.get_angle = 	{	&enc_get_angle_builtin, &enc_get_angle_builtin, &enc_get_angle_builtin, &enc_get_angle_hitechnic	},
-			.set_angle = 	{	&enc_set_angle_builtin, &enc_set_angle_builtin, &enc_set_angle_builtin, &enc_set_angle_hitechnic	},
-			.correlate = &enc_correlate_use_only_first
-		}
-	};
-
-#elif NXT == 3
-	#define ENCODER_GROUPS 1		// Number of joints driven by NXT 3
-	static const struct encoder_group[ENCODER_GROUPS] = {
-		{
-			.num_encs = 3,
-			.enc_types = 	{	ENC_TYPE_RELATIVE,	ENC_TYPE_RELATIVE,	ENC_TYPE_ABSOLUTE	},
-			.enc_ports = 	{	NXT_PORT_A,			NXT_PORT_B,			NXT_PORT_1			},
-			.r_ei_to_out = 	{	F16(1.0),			F16(1.0),			F16(1.0)			},
-			.r_out_to_ei =  {	F16(1.0/1.0),		F16(1.0/1.0),		F16(1.0/1.0)		},
-			.get_angle = 	{	&enc_get_angle_builtin, &enc_get_angle_builtin, &enc_get_angle_hitechnic	},
-			.set_angle = 	{	&enc_set_angle_builtin, &enc_set_angle_builtin, &enc_set_angle_hitechnic	},
-			.correlate = &enc_correlate_use_only_first
-		}
-	};
-
-#elif NXT == 4
-	#define ENCODER_GROUPS 3		// Number of joints driven by NXT 4
-	static const struct encoder_group[ENCODER_GROUPS] = {
-		{
-			.num_encs = 4,
-			.enc_types = 	{	ENC_TYPE_RELATIVE,	ENC_TYPE_RELATIVE,	ENC_TYPE_RELATIVE	},
-			.enc_ports = 	{	NXT_PORT_A,			NXT_PORT_B,			NXT_PORT_C			},
-			.r_ei_to_out = 	{	F16(1.0),			F16(1.0),			F16(1.0)			},
-			.r_out_to_ei =  {	F16(1.0/1.0),		F16(1.0/1.0),		F16(1.0/1.0)		},
-			.get_angle = 	{	&enc_get_angle_builtin, &enc_get_angle_builtin, &enc_get_angle_hitechnic	},
-			.set_angle = 	{	&enc_set_angle_builtin, &enc_set_angle_builtin, &enc_set_angle_hitechnic	},
-			.correlate = &enc_correlate_use_only_first
-		}
-	};
-
-#endif
 
 
 // JOINT STATE VARIABLES
